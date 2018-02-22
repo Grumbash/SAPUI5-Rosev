@@ -1,0 +1,11 @@
+<mvc:View
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	controllerName="leverx.app.controller.OrderDetails">
+	<Page
+		title="detailPageTitle"
+		showNavButton="true"
+		navButtonPress="onNavBack">
+		<Button press="onShowProductPress" text="Show product" type="Navigation"/>
+	</Page>
+</mvc:View>
