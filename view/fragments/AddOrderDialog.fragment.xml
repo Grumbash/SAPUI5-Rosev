@@ -1,0 +1,64 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" >
+	<Dialog
+		id="EmployeeDialog"
+		title="Order form">
+		<f:SimpleForm
+			id="orderForm"
+			maxContainerCols="1"
+			layout="ResponsiveGridLayout"
+			labelSpanL="12"
+			labelSpanM="12"
+			emptySpanL="0"
+			emptySpanM="0"
+			columnsL="1"
+			columnsM="1">
+			<f:content>
+				<Label text="Customer"/>
+				<Input value="{oOrderView>/summary/customer}"/>
+
+				<Label text="Total price"/>
+				<Input value="{oOrderView>/summary/totalPrice}"/>
+			</f:content>
+			<f:content>
+				<Label text="Name"/>
+				<Input value="{oOrderView>/shipTo/name}"/>
+
+				<Label text="address"/>
+				<Input value="{oOrderView>/shipTo/address}"/>
+
+				<Label text="ZIP"/>
+				<Input value="{oOrderView>/shipTo/ZIP}"/>
+
+				<Label text="Region"/>
+				<Input value="{oOrderView>/shipTo/region}"/>
+
+				<Label text="Country"/>
+				<Input value="{oOrderView>/shipTo/country}"/>
+			</f:content>
+			<f:content>
+				<Label text="First name"/>
+				<Input value="{oOrderView>/customerInfo/firstName}"/>
+
+				<Label text="Last name"/>
+				<Input value="{oOrderView>/customerInfo/lastName}"/>
+
+				<Label text="Address"/>
+				<Input value="{oOrderView>/customerInfo/address}"/>
+
+				<Label text="Phone"/>
+				<Input value="{oOrderView>/customerInfo/phone}"/>
+
+				<Label text="Email"/>
+				<Input value="{oOrderView>/customerInfo/email}"/>
+			</f:content>
+		</f:SimpleForm>
+
+		<buttons>
+			<Button text="Send" press="onSendOrderPress"/>
+			<Button text="Close" press="onCloseDialogPress"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

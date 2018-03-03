@@ -3,8 +3,39 @@
 	xmlns:mvc="sap.ui.core.mvc"
 	controllerName="leverx.app.controller.ProductDetails">
 	<Page
-		title="productDetails"
+		title="Product details"
 		showNavButton="true"
 		navButtonPress="onProductNavBack">
+		<ObjectHeader
+			title="{odata>name}"
+			backgroundDesign="Solid">
+				<attributes>
+					<ObjectAttribute
+						text="Quantity {odata>quantity}, price {odata>price}"/>
+					<ObjectAttribute
+						title="Total price"
+						text="{odata>totalPrice} {odata>currency}"/>
+				</attributes>
+		</ObjectHeader>
+		<Text text="{odata>/comments}"/>
+		<FlexBox
+			class="sapUiSmallMarginTopBottom"
+			alignItems="Center">
+			<Text text="Author name: " />
+			<Input placeholder="Enter name" value="{oComment>/author}"/>
+			<Text text="Rating: "/>
+			<RatingIndicator id="RI_default" maxValue="5" value="{oComment>/rating}" tooltip="Rating Tooltip" />
+		</FlexBox>
+			<FeedInput
+				post="onPost"
+				showIcon="true"
+				value="{oComment>/comment}"/>
+			<List
+				showSeparators="Inner"
+				items="{odata>comments}" >
+				<FeedListItem
+								text="lol"
+								timestamp="Rating: {odata>comments/rating}"/>
+		</List>
 	</Page>
 </mvc:View>

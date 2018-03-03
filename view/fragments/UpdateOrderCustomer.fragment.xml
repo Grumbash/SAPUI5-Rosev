@@ -1,0 +1,37 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" >
+	<Dialog
+		id="ProductDialog"
+		title="Produc form">
+		<f:SimpleForm
+			id="productForm"
+			maxContainerCols="1"
+			layout="ResponsiveGridLayout"
+			labelSpanL="12"
+			labelSpanM="12"
+			emptySpanL="0"
+			emptySpanM="0"
+			columnsL="1"
+			columnsM="1">
+			<f:content>
+				<Label text="First Name" />
+				<Input value="{odata>customerInfo/firstName}"/>
+				<Label text="Last Name" />
+				<Input value="{odata>customerInfo/lastName}"/>
+				<Label text="Address" />
+				<Input value="{odata>customerInfo/address}"/>
+				<Label text="Phone" />
+				<Input value="{odata>customerInfo/phone}"/>
+				<Label text="Email"/>
+				<Input value="{odata>customerInfo/email}"/>
+			</f:content>
+		</f:SimpleForm>
+
+		<buttons>
+			<Button press="onProductSendUpdateCutomerPress" text="Update"/>
+			<Button text="Close" press="onCloseDialogPress"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

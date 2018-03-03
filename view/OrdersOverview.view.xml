@@ -2,7 +2,105 @@
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
 	controllerName="leverx.app.controller.OrdersOverview">
-	<Page title="OrdersOverview"> 
-		<Button press="onMyButtonPress" text="Show Full Order" type="Navigation"/>
-	</Page>
+	<Page title="Orders Overview">
+		<Table class="sapUiResponsiveMargin sapUiNoMarginTop" width="auto" items="{odata>/Orders}" id="ordersTable">
+						<headerToolbar>
+							<Toolbar>
+								<Title text="Orders"/>
+								<ToolbarSpacer/>
+								<SearchField width="20%" search="onFilterOrders" placeholder="Search"/>
+								<Button
+									press="onAddOrderPress"
+									icon="sap-icon://add"/>
+
+							</Toolbar>
+						</headerToolbar>
+						<columns>
+							<Column id="nameColumn">
+								<Text
+										id="nameColumnTitle"
+										text="ID"/>
+							</Column>
+							<Column
+									id="supplierNameColumn"
+									demandPopin="false"
+									minScreenWidth="Tablet">
+								<Text text="Customer"/>
+							</Column>
+							<Column
+									id="unitPriceColumn"
+									demandPopin="true"
+									minScreenWidth="Tablet">
+								<Text text="Created At"/>
+							</Column>
+							<Column id="unitsOnOrderColumn"
+									demandPopin="true"
+									minScreenWidth="Tablet">
+								<Text text="Shipped At"/>
+							</Column>
+							<Column id="unitsInStockColumn"
+									demandPopin="true"
+									minScreenWidth="Tablet"
+									hAlign="End">
+								<Text text="Status"/>
+							</Column>
+							<Column id="totalPrice"
+									demandPopin="true"
+									minScreenWidth="Tablet"
+									hAlign="End">
+								<Text text="Total Price"/>
+							</Column>
+							<Column id="shipCountry"
+									hAlign="End">
+								<Text text="Ship Country"/>
+							</Column>
+							<Column hAlign="End" id="deleteOrder">
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem
+									press="onOrderPress"
+									type="Navigation">
+								<cells>
+									<ObjectIdentifier
+											title="{odata>id}"/>
+									<Text text = "{
+											path: 'odata>summary/customer'
+										}"/>
+									 <ObjectIdentifier
+											title="{
+															path: 'odata>summary/createdAt',
+															type: 'sap.ui.model.type.Date',
+															formatOptions: {
+													      source: {
+													        pattern: 'yyyy-MM-ddTHH:mm:ssZ+-hh:mm'
+													      },
+													      pattern: 'yyyy/MM/dd'
+													    }
+														}"/>
+									<ObjectIdentifier
+											title="{
+															path: 'odata>summary/shippedAt',
+															type: 'sap.ui.model.type.Date',
+															formatOptions: {
+													      source: {
+													        pattern: 'yyyy-MM-ddTHH:mm:ssZ+-hh:mm'
+													      },
+													      pattern: 'yyyy/MM/dd'
+													    }
+														}"/>
+									<ObjectIdentifier
+											title="{odata>summary/status}"/>
+									<ObjectIdentifier
+											title="{odata>summary/totalPrice}"/>
+									<ObjectIdentifier
+											title="{odata>shipTo/country}"/>
+									<Button
+										press="onDeleteOrderPress"
+										icon="sap-icon://sys-cancel"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+</Page>
 </mvc:View>
