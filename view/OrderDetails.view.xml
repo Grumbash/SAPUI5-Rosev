@@ -1,11 +1,186 @@
 <mvc:View
 	xmlns="sap.m"
+	xmlns:semantic="sap.m.semantic"
 	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
 	controllerName="leverx.app.controller.OrderDetails">
 	<Page
-		title="detailPageTitle"
+		title="Order details"
 		showNavButton="true"
 		navButtonPress="onNavBack">
-		<Button press="onShowProductPress" text="Show product" type="Navigation"/>
+		<ObjectHeader
+			title="Order({odata>id}), from {
+							path: 'odata>summary/createdAt',
+							type: 'sap.ui.model.type.Date',
+							formatOptions: {
+								source: {
+									pattern: 'yyyy-MM-ddTHH:mm:ssZ+-hh:mm'
+								},
+								pattern: 'MMM dd, YYYY'
+							}
+						}"
+			backgroundDesign="Solid">
+				<attributes>
+					<ObjectAttribute
+						title="Total price"
+						text="{odata>summary/totalPrice} {odata>summary/currency} "/>
+					<ObjectAttribute
+						title="Status"
+						text="{odata>summary/status}"/>
+					<ObjectAttribute
+						title="Customer"
+						text="{odata>summary/customer}"/>
+				</attributes>
+		</ObjectHeader>
+		<IconTabBar
+			id="idIconTabBarInlineMode"
+			headerMode="Inline"
+			upperCase="false"
+			expanded="false"
+			expandable="false"
+			class="sapUiResponsiveContentPadding">
+			<items>
+				<IconTabFilter
+					text="Ship info">
+				</IconTabFilter>
+				<IconTabFilter
+					text="Customer info">
+				</IconTabFilter>
+				<IconTabFilter
+					text="Products">
+				</IconTabFilter>
+			</items>
+		</IconTabBar>
+		<content>
+			<f:SimpleForm
+				id="ShipToFormView"
+				maxContainerCols="2"
+				editable="true"
+				title="Ship To Form"
+				labelSpanL="4" labelSpanM="4"
+				emptySpanL="0"
+				emptySpanM="0"
+				columnsL="2"
+				columnsM="2"
+				validateFieldGroup="onValidateFieldGroup">
+				<f:content>
+					<Label/>
+					<Button
+						icon="sap-icon://edit"
+						press="onUpdateOrderPress"
+						color="blue"
+						width="50%"/>
+					<Label text="Ship to" />
+					<Input fieldGroupIds="Billing Information" value="{odata>shipTo/name}"
+						id="ShipToName" width="50%" enabled="false"/>
+					<Label text="Address" />
+					<Input fieldGroupIds="Billing Information" value="{odata>shipTo/address}"
+						id="AddressName" width="50%" enabled="false"/>
+					<Label text="ZIP" />
+					<Input fieldGroupIds="Billing Information" value="{odata>shipTo/ZIP}"
+						id="ZIPName" width="50%" enabled="false"/>
+					<Label text="Region" />
+					<Input fieldGroupIds="Billing Information" value="{odata>shipTo/region}"
+						id="RegionName" width="50%" enabled="false"/>
+					<Label text="Country"/>
+					<Input fieldGroupIds="Billing Information" value="{odata>shipTo/country}"
+						id="CountryName" width="50%" enabled="false"/>
+					<Label/>
+				</f:content>
+			</f:SimpleForm>
+			<f:SimpleForm
+				id="CustomerInfoFormView"
+				maxContainerCols="2"
+				editable="true"
+				title="Customer info"
+				labelSpanL="4" labelSpanM="4"
+				emptySpanL="0"
+				emptySpanM="0"
+				columnsL="2"
+				columnsM="2"
+				validateFieldGroup="onValidateFieldGroup">
+				<f:content>
+					<Label/>
+					<Button
+						icon="sap-icon://edit"
+						press="onUpdateOrderCustomerPress"
+						color="blue"
+						width="50%"/>
+					<Label text="First name" />
+					<Input fieldGroupIds="Billing Information" value="{odata>customerInfo/firstName}"
+						id="FirstName" width="50%" enabled="false"/>
+					<Label text="Last name" />
+					<Input fieldGroupIds="Billing Information" value="{odata>customerInfo/lastName}"
+						id="LastName" width="50%" enabled="false"/>
+					<Label text="Address" />
+					<Input fieldGroupIds="Billing Information" value="{odata>customerInfo/address}"
+						id="Address" width="50%" enabled="false"/>
+					<Label text="Phone" />
+					<Input fieldGroupIds="Billing Information" type="Tel" value="{odata>customerInfo/phone}"
+						id="Phone" width="50%" enabled="false"/>
+					<Label text="Email"/>
+					<Input fieldGroupIds="Billing Information" type="email" value="{odata>customerInfo/email}"
+						id="Email" width="50%" enabled="false"/>
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<Table class="sapUiResponsiveMargin sapUiNoMarginTop" width="auto" items="{odata>products}">
+						<headerToolbar>
+							<Toolbar>
+								<Title text="Products"/>
+								<ToolbarSpacer/>
+								<Button
+									press="onAddProductPress"
+									icon="sap-icon://add"/>
+							</Toolbar>
+						</headerToolbar>
+						<columns>
+							<Column>
+								<Text
+										text="ID"/>
+							</Column>
+							<Column
+									demandPopin="false"
+									minScreenWidth="Tablet">
+								<Text text="Name"/>
+							</Column>
+							<Column
+									demandPopin="true"
+									minScreenWidth="Tablet">
+								<Text text="Price"/>
+							</Column>
+							<Column
+									demandPopin="true"
+									minScreenWidth="Tablet">
+								<Text text="Qty"/>
+							</Column>
+							<Column
+									demandPopin="true"
+									minScreenWidth="Tablet">
+								<Text text="Total price"/>
+							</Column>
+							<Column
+									hAlign="End">
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem
+									press="onProductPress"
+									type="Navigation">
+								<cells>
+									<Text text = "{odata>id}"/>
+									<Text text = "{odata>name}"/>
+									<Text text = "{odata>price}"/>
+									<Text text = "{odata>quantity}"/>
+									<Text text = "{odata>totalPrice} {odata>currency}"/>
+									<Button
+										press="onDeleteProductPress"
+										icon="sap-icon://sys-cancel"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
 	</Page>
 </mvc:View>

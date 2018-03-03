@@ -49,12 +49,12 @@
 					]
 				},
 				{
-					"pattern": "orderDetails",
+					"pattern": "orderDetails/{objectId}",
 					"name": "orderDetails",
 					"target": "orderDetails"
 				},
 				{
-					"pattern": "productDetails",
+					"pattern": "productDetails/{productId}",
 					"name": "productDetails",
 					"target": "productDetails"
 				}

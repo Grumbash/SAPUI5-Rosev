@@ -1,0 +1,37 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" >
+	<Dialog
+		id="ProductDialog"
+		title="Produc form">
+		<f:SimpleForm
+			id="productForm"
+			maxContainerCols="1"
+			layout="ResponsiveGridLayout"
+			labelSpanL="12"
+			labelSpanM="12"
+			emptySpanL="0"
+			emptySpanM="0"
+			columnsL="1"
+			columnsM="1">
+			<f:content>
+				<Label text="Ship to" />
+				<Input value="{odata>shipTo/name}"/>
+				<Label text="Address" />
+				<Input value="{odata>shipTo/address}"/>
+				<Label text="ZIP" />
+				<Input value="{odata>shipTo/ZIP}"/>
+				<Label text="Region" />
+				<Input value="{odata>shipTo/region}"/>
+				<Label text="Country"/>
+				<Input value="{odata>shipTo/country}"/>
+			</f:content>
+		</f:SimpleForm>
+
+		<buttons>
+			<Button press="onProductSendUpdatePress" text="Update"/>
+			<Button text="Close" press="onCloseDialogPress"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>
