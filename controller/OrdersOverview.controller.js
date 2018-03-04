@@ -86,10 +86,6 @@ sap.ui.define([
 			onSendOrderPress: function () {
 				var oModele = this.getView().getModel("oOrderView").getData();
 				var oODataModel = this.getView().getModel("odata");
-<<<<<<< HEAD
-=======
-
->>>>>>> 08e0d1f7b5c46dbfc502e5d3898c5cf881174396
 				oODataModel.create("/Orders", oModele, {
 					success: function () {
 						MessageToast.show("Supplier was successfully created!")
