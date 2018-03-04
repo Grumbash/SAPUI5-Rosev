@@ -17,11 +17,15 @@
 						text="{odata>totalPrice} {odata>currency}"/>
 				</attributes>
 		</ObjectHeader>
+<<<<<<< HEAD
 		<Text text="{odata>/comments}"/>
+=======
+>>>>>>> 08e0d1f7b5c46dbfc502e5d3898c5cf881174396
 		<FlexBox
 			class="sapUiSmallMarginTopBottom"
 			alignItems="Center">
 			<Text text="Author name: " />
+<<<<<<< HEAD
 			<Input placeholder="Enter name" value="{oComment>/author}"/>
 			<Text text="Rating: "/>
 			<RatingIndicator id="RI_default" maxValue="5" value="{oComment>/rating}" tooltip="Rating Tooltip" />
@@ -37,5 +41,14 @@
 								text="lol"
 								timestamp="Rating: {odata>comments/rating}"/>
 		</List>
+=======
+			<Input placeholder="Enter name"/>
+			<Text text="Rating: "/>
+			<RatingIndicator id="RI_default" maxValue="5" value="0" tooltip="Rating Tooltip" />
+		</FlexBox>
+			<FeedInput
+				post="onPost"
+				showIcon="true" />
+>>>>>>> 08e0d1f7b5c46dbfc502e5d3898c5cf881174396
 	</Page>
 </mvc:View>

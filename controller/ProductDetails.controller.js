@@ -13,6 +13,7 @@ sap.ui.define([
 				var oRouter = oComponent.getRouter();
 				oRouter.getRoute("productDetails").attachPatternMatched(this.onPatternMatched, this);
 				var timeNow = new Date().toISOString();
+<<<<<<< HEAD
 				var mComment = new JSONModel({
 					comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus vel nunc elementum aliquam.",
 					author: "Some Author",
@@ -41,6 +42,19 @@ sap.ui.define([
 			},
 			formatComment: function(author,comment) {
 				return author + ": " + comment;
+=======
+				var mComment = new JSONModel(
+					{
+						comment: "",
+						author: "",
+						createdDate: timeNow,
+						rating: 0,
+					});
+				this.getView().setModel(mComment,"newComment");
+			},
+			onPost:function(oEnvent){
+				
+>>>>>>> 08e0d1f7b5c46dbfc502e5d3898c5cf881174396
 			},
 			onPatternMatched: function (oEvent) {
 				var that = this;
